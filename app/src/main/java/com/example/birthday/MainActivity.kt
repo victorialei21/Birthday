@@ -1,5 +1,6 @@
 package com.example.birthday
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -10,8 +11,9 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
+
 class MainActivity : AppCompatActivity() {
-    lateinit var editTextInput: String
+    var age = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,23 +28,30 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val editText = EditText(this)
+        val customLayout : View = layoutInflater
+            .inflate(R.layout.custom_alertdialog, null)
+
         when (item.itemId) {
             R.id.age -> AlertDialog.Builder(this)
                 .setTitle("Enter Your Age")
-                .setPositiveButton("age"){ _,_ ->
-                    val editTextInput: String = editText.getText().toString()
-                }
+                .setView(customLayout)
+                .setPositiveButton("Confirm", DialogInterface.OnClickListener(){
+                        dialogInterface: DialogInterface?, i: Int ->
+                        var editText = customLayout.findViewById<EditText>(R.id.editText)
+                        age = Integer.parseInt(editText.text.toString())
+                        println("age: $age")
+                })
                 .show()
         }
         return false
-    } //end onOptionsItemSelected
+    } //onOptionsItemSelected
+
 
     fun showGame(view : View){
         when(view.id){
-            R.id.pinataButton -> intent = Intent(applicationContext, PinataActivity::class.java)
-            R.id.candlesButton -> intent = Intent(applicationContext, CandlesActivity::class.java)
-            R.id.giftButton -> intent = Intent(applicationContext, GiftActivity::class.java)
+            R.id.pinataButton -> intent = Intent(this, PinataActivity::class.java)
+            R.id.candlesButton -> intent = Intent(this, CandlesActivity::class.java)
+            R.id.giftButton -> intent = Intent(this, GiftActivity::class.java)
         }
         startActivity(intent)
     }//showGame
