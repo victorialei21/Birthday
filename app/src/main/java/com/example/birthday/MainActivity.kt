@@ -1,14 +1,18 @@
 package com.example.birthday
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    lateinit var editTextInput: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,18 +24,27 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }//onCreateOptionsMenu
 
-    fun selectGame(view : View){
-
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val editText = EditText(this)
         when (item.itemId) {
-            R.id.pinata -> intent = Intent(this, PinataActivity::class.java)
-            R.id.candles -> intent = Intent(this, CandlesActivity::class.java)
-            R.id.gift -> intent = Intent(this, GiftActivity::class.java)
+            R.id.age -> AlertDialog.Builder(this)
+                .setTitle("Enter Your Age")
+                .setPositiveButton("age"){ _,_ ->
+                    val editTextInput: String = editText.getText().toString()
+                }
+                .show()
         }
-        startActivity(intent)
         return false
     } //end onOptionsItemSelected
+
+    fun showGame(view : View){
+        when(view.id){
+            R.id.pinataButton -> intent = Intent(applicationContext, PinataActivity::class.java)
+            R.id.candlesButton -> intent = Intent(applicationContext, CandlesActivity::class.java)
+            R.id.giftButton -> intent = Intent(applicationContext, GiftActivity::class.java)
+        }
+        startActivity(intent)
+    }//showGame
 
 }//MainActivity
