@@ -6,20 +6,28 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
 class GiftActivity : AppCompatActivity() {
+    lateinit var text : TextView
     var presentNdx = 1
+    var name = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gift)
         presentNdx = (1..9).shuffled().first()
+        name = intent.getStringExtra("Name").toString()
+        text = findViewById(R.id.textView4)
         //Toast.makeText(applicationContext, presentNdx.toString(), Toast.LENGTH_LONG).show()
 
+        if (name!="") {
+            text.text = "Happy birthday $name! \nWho brought you a present? \nTap your friends to find out."
+        }
     } // onCreate
 
     fun disappear (view : View) {

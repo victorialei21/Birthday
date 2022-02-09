@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     var age = 1
+    var name = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +27,11 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }//onCreateOptionsMenu
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val customLayout : View = layoutInflater
-            .inflate(R.layout.custom_alertdialog, null)
+            .inflate(R.layout.custom_alertdialog_number, null)
+        val customLayoutText : View = layoutInflater
+            .inflate(R.layout.custom_alertdialog_text, null)
 
         when (item.itemId) {
             R.id.age -> AlertDialog.Builder(this)
@@ -42,6 +44,16 @@ class MainActivity : AppCompatActivity() {
                         println("age: $age")
                 })
                 .show()
+            R.id.name -> AlertDialog.Builder(this)
+                .setTitle("Enter Your Name")
+                .setView(customLayoutText)
+                .setPositiveButton("Confirm", DialogInterface.OnClickListener(){
+                        dialogInterface: DialogInterface?, i: Int ->
+                        var editText = customLayoutText.findViewById<EditText>(R.id.editTextLetter)
+                        name = editText.text.toString()
+                        println("name: $name")
+                })
+                .show()
         }
         return false
     } //onOptionsItemSelected
@@ -49,11 +61,11 @@ class MainActivity : AppCompatActivity() {
 
     fun showGame(view : View){
         when(view.id){
-            R.id.pinataButton -> intent = Intent(this, PinataActivity::class.java)
             R.id.candlesButton -> intent = Intent(this, CandlesActivity::class.java)
             R.id.giftButton -> intent = Intent(this, GiftActivity::class.java)
         }
         intent.putExtra("Age", age)
+        intent.putExtra("Name", name)
         startActivity(intent)
     }//showGame
 
