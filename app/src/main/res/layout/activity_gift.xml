@@ -10,7 +10,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:lineSpacingExtra="3dp"
         android:text="Who brought you a present? \nTap your friends to find out."
         android:textAlignment="center"
@@ -24,7 +24,7 @@
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:padding="20dp"
         android:paddingLeft="5dp"
         app:columnCount="3"
