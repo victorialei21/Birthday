@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             R.id.candlesButton -> intent = Intent(this, CandlesActivity::class.java)
             R.id.giftButton -> intent = Intent(this, GiftActivity::class.java)
         }
+        intent.putExtra("Age", age)
         startActivity(intent)
     }//showGame
 
