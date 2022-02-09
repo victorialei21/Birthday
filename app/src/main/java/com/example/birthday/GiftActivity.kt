@@ -28,7 +28,7 @@ class GiftActivity : AppCompatActivity() {
         if (name!="") {
             text.text = "Happy birthday $name! \nWho brought you a present? \nTap your friends to find out."
         }
-    } // onCreate
+    }//onCreate
 
     fun disappear (view : View) {
         val b = view as ImageButton
@@ -48,7 +48,7 @@ class GiftActivity : AppCompatActivity() {
                 endgame()
             }, 2500)
         }
-    } // disappear
+    }//disappear
 
     private fun endgame () {
         AlertDialog.Builder(this)
@@ -66,6 +66,6 @@ class GiftActivity : AppCompatActivity() {
             })
             .show()
 
-    } // endgame
+    }//endgame
 
 } // GiftActivity

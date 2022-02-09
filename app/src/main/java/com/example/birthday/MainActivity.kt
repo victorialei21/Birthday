@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                         dialogInterface: DialogInterface?, i: Int ->
                         var editText = customLayout.findViewById<EditText>(R.id.editText)
                         age = Integer.parseInt(editText.text.toString())
-                        println("age: $age")
                 })
                 .show()
             R.id.name -> AlertDialog.Builder(this)
@@ -51,12 +50,11 @@ class MainActivity : AppCompatActivity() {
                         dialogInterface: DialogInterface?, i: Int ->
                         var editText = customLayoutText.findViewById<EditText>(R.id.editTextLetter)
                         name = editText.text.toString()
-                        println("name: $name")
                 })
                 .show()
         }
         return false
-    } //onOptionsItemSelected
+    }//onOptionsItemSelected
 
 
     fun showGame(view : View){
